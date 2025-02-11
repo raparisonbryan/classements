@@ -28,7 +28,7 @@ const Battle = () => {
                 const gameDetail = data.results
                     .sort(() => Math.random() - 0.5)
                     .slice(0, 10)
-                    .map(game => ({
+                    .map((game: { id: string; background_image: string; name: string; }) => ({
                         id: game.id,
                         image: game.background_image,
                         name: game.name
