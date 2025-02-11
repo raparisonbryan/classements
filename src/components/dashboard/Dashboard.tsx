@@ -47,7 +47,7 @@ const Dashboard = () => {
 
     if (!isDesktop) {
         return (
-            <div className="flex flex-col h-screen w-[300px] p-5 gap-10 bg-black">
+            <div className="flex flex-col h-screen w-[300px] p-5 gap-10 bg-[#0B162C]">
                 <DashboardContent />
             </div>
         );
@@ -59,12 +59,12 @@ const Dashboard = () => {
                 type="primary"
                 onClick={showDrawer}
                 icon={<MenuOutlined />}
-                style={{ position: 'fixed', right: 20, top: 20, zIndex: 999, background: '#18534F' }}
+                style={{ position: 'fixed', right: 20, top: 20, zIndex: 999, background: '#0B162C' }}
             >
                 Menu
             </Button>
             <Drawer
-                style={{backgroundColor: '#18534F', color: 'white'}}
+                style={{backgroundColor: '#0B162C', color: 'white'}}
                 title="Planning 2025"
                 placement="left"
                 closable={true}

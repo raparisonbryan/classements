@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import {useRouter} from 'next/navigation';
+import Image from "next/image";
 
 interface Item {
     id: string;
-    name: string;
-    reference_image_id?: string;
+    breed: string;
+    image?: string;
 }
 
 interface Pair {
@@ -16,7 +17,7 @@ interface BattleComponentProps {
     items: Item[];
 }
 
-const BattleComponent = ({ items: initialItems }: BattleComponentProps) => {
+const AnimalsComponent = ({ items: initialItems }: BattleComponentProps) => {
     const [items, setItems] = useState<Item[]>([]);
     const [currentPair, setCurrentPair] = useState<Pair | null>(null);
     const [rankings, setRankings] = useState<Item[]>([]);
@@ -84,36 +85,42 @@ const BattleComponent = ({ items: initialItems }: BattleComponentProps) => {
     }
 
     return (
-        <div className="max-w-4xl h-screen mx-auto p-4">
+        <div className="flex items-center justify-center max-w-4xl h-screen p-4 mx-auto">
             {!isComplete ? (
                 <div className="space-y-8">
-                    <h2 className="text-2xl font-bold text-center mb-8">
-                        Quelle option préférez-vous ?
+                    <h2 className="text-3xl font-bold text-center mb-8">
+                        Que préférez-vous ?
                     </h2>
                     <div className="grid grid-cols-2 gap-4">
                         <div className="hover:shadow-lg transition-shadow cursor-pointer"
                               onClick={() => handleChoice(currentPair!.item1)}>
                             <div className="p-6 text-center">
-                                <h3 className="text-xl font-semibold">{currentPair!.item1.name}</h3>
-                                {currentPair!.item1.reference_image_id && (
-                                    <img
-                                        src={`https://cdn2.thedogapi.com/images/${currentPair!.item1.reference_image_id}.jpg`}
-                                        alt={currentPair!.item1.name}
-                                        className="mt-4 mx-auto max-w-full h-48 object-contain"
-                                    />
+                                <h3 className="text-xl font-semibold">{currentPair!.item1.breed}</h3>
+                                {currentPair!.item1.image && (
+                                    <div className="relative overflow-hidden mt-4 mx-auto w-60 h-48 rounded-xl">
+                                        <Image
+                                            fill
+                                            src={currentPair!.item1.image}
+                                            alt={currentPair!.item1.breed}
+                                            className="object-cover"
+                                        />
+                                    </div>
                                 )}
                             </div>
                         </div>
                         <div className="hover:shadow-lg transition-shadow cursor-pointer"
                               onClick={() => handleChoice(currentPair!.item2)}>
                             <div className="p-6 text-center">
-                                <h3 className="text-xl font-semibold">{currentPair!.item2.name}</h3>
-                                {currentPair!.item2.reference_image_id && (
-                                    <img
-                                        src={`https://cdn2.thedogapi.com/images/${currentPair!.item2.reference_image_id}.jpg`}
-                                        alt={currentPair!.item2.name}
-                                        className="mt-4 mx-auto max-w-full h-48 object-contain"
-                                    />
+                                <h3 className="text-xl font-semibold">{currentPair!.item2.breed}</h3>
+                                {currentPair!.item2.image && (
+                                    <div className="relative overflow-hidden mt-4 mx-auto w-60 h-48 rounded-xl">
+                                        <Image
+                                            fill
+                                            src={currentPair!.item2.image}
+                                            alt={currentPair!.item2.breed}
+                                            className="object-cover"
+                                        />
+                                    </div>
                                 )}
                             </div>
                         </div>
@@ -133,14 +140,17 @@ const BattleComponent = ({ items: initialItems }: BattleComponentProps) => {
                                 <div className="p-4 flex items-center">
                                     <span className="font-bold mr-4 text-xl">{index + 1}</span>
                                     <div className="flex gap-2 items-center">
-                                        {item.reference_image_id && (
-                                            <img
-                                                src={`https://cdn2.thedogapi.com/images/${item.reference_image_id}.jpg`}
-                                                alt={item.name}
-                                                className="w-20 h-20 object-cover rounded"
-                                            />
+                                        {item.image && (
+                                            <div className="relative overflow-hidden w-20 h-20 rounded">
+                                                <Image
+                                                    fill
+                                                    src={item.image}
+                                                    alt={item.breed}
+                                                    className="object-cover"
+                                                />
+                                            </div>
                                         )}
-                                        <h3 className="font-semibold">{item.name}</h3>
+                                        <h3 className="font-semibold">{item.breed}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -170,10 +180,10 @@ const BattleComponent = ({ items: initialItems }: BattleComponentProps) => {
                 }}
                 className="absolute top-4 right-4 border border-neutral-50 text-white p-2 rounded text-xs"
             >
-                Retour à l'accueil
+                Retour à l&#39;accueil
             </button>
         </div>
     );
 };
 
-export default BattleComponent;
+export default AnimalsComponent;
