@@ -20,6 +20,12 @@ const nextConfig: NextConfig = {
                 hostname: 'media.rawg.io',
                 port: '',
                 search: '',
+            },
+            {
+                protocol: 'https',
+                hostname: 'image.tmdb.org',
+                port: '',
+                search: '',
             }
         ],
     },

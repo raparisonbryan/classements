@@ -35,7 +35,7 @@ const BattleComponent = ({ items: initialItems }: BattleComponentProps) => {
                 });
             }
         }
-        return pairs;
+        return pairs.sort(() => Math.random() - 0.5);
     };
 
     useEffect(() => {
@@ -51,14 +51,46 @@ const BattleComponent = ({ items: initialItems }: BattleComponentProps) => {
         setRankings(prevRankings => {
             const newRankings = [...prevRankings];
 
-            if (!newRankings.find(item => item.id === winner.id)) {
-                newRankings.push(winner);
+            // Cas 1 : Si le classement est vide
+            if (newRankings.length === 0) {
+                return [winner, loser];
             }
 
-            if (!newRankings.find(item => item.id === loser.id)) {
+            // Cas 2 : Si le gagnant et le perdant ne sont pas encore classés
+            if (!newRankings.find(item => item.id === winner.id) &&
+                !newRankings.find(item => item.id === loser.id)) {
+                return [...newRankings, winner, loser];
+            }
+
+            // Cas 3 : Si seul le gagnant est déjà classé
+            if (newRankings.find(item => item.id === winner.id) &&
+                !newRankings.find(item => item.id === loser.id)) {
                 const winnerIndex = newRankings.findIndex(item => item.id === winner.id);
                 newRankings.splice(winnerIndex + 1, 0, loser);
+                return newRankings;
             }
+
+            // Cas 4 : Si seul le perdant est déjà classé
+            if (!newRankings.find(item => item.id === winner.id) &&
+                newRankings.find(item => item.id === loser.id)) {
+                const loserIndex = newRankings.findIndex(item => item.id === loser.id);
+                newRankings.splice(loserIndex, 0, winner);
+                return newRankings;
+            }
+
+            // Cas 5 : Si les deux sont déjà classés
+            const winnerIndex = newRankings.findIndex(item => item.id === winner.id);
+            const loserIndex = newRankings.findIndex(item => item.id === loser.id);
+
+            // Si le classement actuel est cohérent avec le résultat, ne rien faire
+            if (winnerIndex < loserIndex) {
+                return newRankings;
+            }
+
+            // Sinon, réorganiser le classement
+            newRankings.splice(loserIndex, 1);
+            const newLoserPosition = winnerIndex + 1;
+            newRankings.splice(newLoserPosition, 0, loser);
 
             return newRankings;
         });
@@ -79,6 +111,7 @@ const BattleComponent = ({ items: initialItems }: BattleComponentProps) => {
             setIsComplete(true);
         }
     };
+
 
     if (!currentPair && !isComplete) {
         return <div className="text-center p-4">Chargement...</div>;
