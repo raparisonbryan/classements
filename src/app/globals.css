@@ -18,3 +18,7 @@ body {
   color: var(--foreground);
   background: var(--background);
 }
+
+.anticon.anticon-close {
+  color: var(--foreground);
+}

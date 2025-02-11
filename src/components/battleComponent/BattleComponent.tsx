@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {useRouter} from 'next/navigation';
 import Image from "next/image";
+import { useRanking} from "@/hooks/useRanking";
 
 interface Item {
     id: string;
@@ -24,6 +25,7 @@ const BattleComponent = ({ items: initialItems }: BattleComponentProps) => {
     const [remainingPairs, setRemainingPairs] = useState<Pair[]>([]);
     const [isComplete, setIsComplete] = useState(false);
     const router = useRouter();
+    const { saveRanking } = useRanking();
 
     const generatePairs = (items: Item[]): Pair[] => {
         const pairs: Pair[] = [];
@@ -109,6 +111,7 @@ const BattleComponent = ({ items: initialItems }: BattleComponentProps) => {
             setCurrentPair(newRemainingPairs[0]);
         } else {
             setIsComplete(true);
+            saveRanking(rankings);
         }
     };
 
@@ -118,19 +121,18 @@ const BattleComponent = ({ items: initialItems }: BattleComponentProps) => {
     }
 
     return (
-        <div className="flex items-center justify-center max-w-4xl h-screen p-4 mx-auto">
+        <div className="flex items-center justify-center max-w-4xl h:full sm:h-screen p-4 mx-auto">
             {!isComplete ? (
                 <div className="space-y-8">
-                    <h2 className="text-3xl font-bold text-center mb-8">
+                    <h2 className="text-xl sm:text-3xl font-bold text-center mb-8 mt-12 sm:mt-0">
                         Que préférez-vous ?
                     </h2>
-                    <div className="grid grid-cols-2 gap-4">
-                        <div className="hover:shadow-lg transition-shadow cursor-pointer"
+                    <div className="sm:grid sm:grid-cols-2 gap-4">
+                        <div className="cursor-pointer"
                               onClick={() => handleChoice(currentPair!.item1)}>
-                            <div className="p-6 text-center">
-                                <h3 className="text-xl font-semibold">{currentPair!.item1.name}</h3>
+                            <div className="flex flex-col p-6 text-center">
                                 {currentPair!.item1.image && (
-                                    <div className="relative overflow-hidden mt-4 mx-auto w-60 h-48 rounded-xl">
+                                    <div className="relative overflow-hidden mb-4 mx-auto w-60 h-48 rounded-xl">
                                         <Image
                                             fill
                                             src={currentPair!.item1.image}
@@ -139,14 +141,14 @@ const BattleComponent = ({ items: initialItems }: BattleComponentProps) => {
                                         />
                                     </div>
                                 )}
+                                <h3 className="text-xl font-semibold">{currentPair!.item1.name}</h3>
                             </div>
                         </div>
-                        <div className="hover:shadow-lg transition-shadow cursor-pointer"
+                        <div className="cursor-pointer"
                               onClick={() => handleChoice(currentPair!.item2)}>
-                            <div className="p-6 text-center">
-                                <h3 className="text-xl font-semibold">{currentPair!.item2.name}</h3>
+                            <div className="flex flex-col p-6 text-center">
                                 {currentPair!.item2.image && (
-                                    <div className="relative overflow-hidden mt-4 mx-auto w-60 h-48 rounded-xl">
+                                    <div className="relative overflow-hidden mb-4 mx-auto w-60 h-48 rounded-xl">
                                         <Image
                                             fill
                                             src={currentPair!.item2.image}
@@ -155,6 +157,7 @@ const BattleComponent = ({ items: initialItems }: BattleComponentProps) => {
                                         />
                                     </div>
                                 )}
+                                <h3 className="text-xl font-semibold">{currentPair!.item2.name}</h3>
                             </div>
                         </div>
                     </div>
@@ -164,10 +167,10 @@ const BattleComponent = ({ items: initialItems }: BattleComponentProps) => {
                 </div>
             ) : (
                 <div>
-                    <h2 className="text-2xl font-bold text-center mb-8">
+                    <h2 className="text-2xl font-bold text-center mt-12 sm:mt-0 mb-8">
                         Classement Final
                     </h2>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="sm:grid sm:grid-cols-2 gap-4">
                         {rankings.map((item, index) => (
                             <div key={item.id}>
                                 <div className="p-4 flex items-center">

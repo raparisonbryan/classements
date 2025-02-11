@@ -37,7 +37,7 @@ const Dashboard = () => {
                 <Link className="text-neutral-50" href={'/'}>
                     Accueil
                 </Link>
-                <Link className="text-neutral-50" href={'/classements'}>
+                <Link className="text-neutral-50" href={'/ranking'}>
                     Classements
                 </Link>
             </div>
@@ -65,7 +65,7 @@ const Dashboard = () => {
             </Button>
             <Drawer
                 style={{backgroundColor: '#0B162C', color: 'white'}}
-                title="Planning 2025"
+                title="Classements"
                 placement="left"
                 closable={true}
                 onClose={onClose}

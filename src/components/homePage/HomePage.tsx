@@ -38,15 +38,15 @@ const HomePage = () => {
     ];
 
     return (
-        <div className="flex flex-col p-10 gap-5 w-full bg-neutral-50">
-            <h1 className="text-3xl text-black">Choisi un thème</h1>
+        <div className="flex flex-col p-5 sm:p-10 gap-5 w-full lg:h-screen bg-neutral-50">
+            <h1 className="text-xl md:text-3xl font-bold text-black">Choisi un thème</h1>
             <div className="w-3/4 h-[1px] bg-black"></div>
-            <div className="pt-10 grid grid-cols-2 gap-5">
+            <div className="pt-2.5 grid grid-cols-1 gap-5 lg:grid-cols-2 lg:pt-10">
                 {cards.map((card, index) => (
                     <div key={index}
-                        className="flex w-full gap-5 rounded overflow-hidden shadow-xl hover:shadow-md"
+                        className="flex sm:flex-row flex-col w-full gap-5 rounded overflow-hidden shadow-xl hover:shadow-md"
                         onClick={card.onClick}>
-                        <div className="w-2/5">
+                        <div className="sm:w-2/5 w-full">
                             <div className="relative h-[200px] overflow-hidden">
                                 <Image
                                     fill
@@ -55,7 +55,7 @@ const HomePage = () => {
                                     src={card.src} />
                             </div>
                         </div>
-                        <div className="flex flex-col w-3/5 gap-2.5 p-2">
+                        <div className="flex flex-col sm:w-2/5 w-full gap-2.5 p-2">
                             <h2 className="text-xl text-black">{card.title}</h2>
                             <p className="text-black text-sm">{card.description}</p>
                         </div>
