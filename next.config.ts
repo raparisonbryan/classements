@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
                 port: '',
                 search: '',
             },
+            {
+                protocol: 'https',
+                hostname: 'media.rawg.io',
+                port: '',
+                search: '',
+            }
         ],
     },
 };

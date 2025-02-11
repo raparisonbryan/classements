@@ -1,16 +1,16 @@
 "use client"
 
 import { useState, useEffect } from 'react';
-import AnimalsComponent from "@/components/animalsComponent/animalsComponent";
+import BattleComponent from "@/components/battleComponent/BattleComponent";
 
 interface Dog {
     id: string;
     image: string;
-    breed: string;
+    name: string;
 }
 
 const Battle = () => {
-    const [items, setItems] = useState<Dog[]>([]);
+    const [dogs, setDogs] = useState<Dog[]>([]);
     const apiURL = process.env.NEXT_PUBLIC_DOG_API;
     const breedURL = process.env.NEXT_PUBLIC_DOG_BREED_API;
 
@@ -33,11 +33,11 @@ const Battle = () => {
                         return {
                             id: dog.id,
                             image: dog.url,
-                            breed: breedData.breeds[0].name,
+                            name: breedData.breeds[0].name,
                         };
                     })
                 );
-                setItems(dogDetail);
+                setDogs(dogDetail);
             } catch (error) {
                 console.error("Erreur lors de la récupération des chiens :", error);
             }
@@ -48,7 +48,7 @@ const Battle = () => {
 
     return (
         <div className="h-full">
-            <AnimalsComponent items={items} />
+            <BattleComponent items={dogs} />
         </div>
     );
 }

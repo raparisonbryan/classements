@@ -4,8 +4,8 @@ import Image from "next/image";
 
 interface Item {
     id: string;
-    breed: string;
-    image?: string;
+    image: string;
+    name: string;
 }
 
 interface Pair {
@@ -17,7 +17,7 @@ interface BattleComponentProps {
     items: Item[];
 }
 
-const AnimalsComponent = ({ items: initialItems }: BattleComponentProps) => {
+const BattleComponent = ({ items: initialItems }: BattleComponentProps) => {
     const [items, setItems] = useState<Item[]>([]);
     const [currentPair, setCurrentPair] = useState<Pair | null>(null);
     const [rankings, setRankings] = useState<Item[]>([]);
@@ -95,13 +95,13 @@ const AnimalsComponent = ({ items: initialItems }: BattleComponentProps) => {
                         <div className="hover:shadow-lg transition-shadow cursor-pointer"
                               onClick={() => handleChoice(currentPair!.item1)}>
                             <div className="p-6 text-center">
-                                <h3 className="text-xl font-semibold">{currentPair!.item1.breed}</h3>
+                                <h3 className="text-xl font-semibold">{currentPair!.item1.name}</h3>
                                 {currentPair!.item1.image && (
                                     <div className="relative overflow-hidden mt-4 mx-auto w-60 h-48 rounded-xl">
                                         <Image
                                             fill
                                             src={currentPair!.item1.image}
-                                            alt={currentPair!.item1.breed}
+                                            alt={currentPair!.item1.name}
                                             className="object-cover"
                                         />
                                     </div>
@@ -111,13 +111,13 @@ const AnimalsComponent = ({ items: initialItems }: BattleComponentProps) => {
                         <div className="hover:shadow-lg transition-shadow cursor-pointer"
                               onClick={() => handleChoice(currentPair!.item2)}>
                             <div className="p-6 text-center">
-                                <h3 className="text-xl font-semibold">{currentPair!.item2.breed}</h3>
+                                <h3 className="text-xl font-semibold">{currentPair!.item2.name}</h3>
                                 {currentPair!.item2.image && (
                                     <div className="relative overflow-hidden mt-4 mx-auto w-60 h-48 rounded-xl">
                                         <Image
                                             fill
                                             src={currentPair!.item2.image}
-                                            alt={currentPair!.item2.breed}
+                                            alt={currentPair!.item2.name}
                                             className="object-cover"
                                         />
                                     </div>
@@ -145,12 +145,12 @@ const AnimalsComponent = ({ items: initialItems }: BattleComponentProps) => {
                                                 <Image
                                                     fill
                                                     src={item.image}
-                                                    alt={item.breed}
+                                                    alt={item.name}
                                                     className="object-cover"
                                                 />
                                             </div>
                                         )}
-                                        <h3 className="font-semibold">{item.breed}</h3>
+                                        <h3 className="font-semibold">{item.name}</h3>
                                     </div>
                                 </div>
                             </div>
@@ -186,4 +186,4 @@ const AnimalsComponent = ({ items: initialItems }: BattleComponentProps) => {
     );
 };
 
-export default AnimalsComponent;
+export default BattleComponent;
