@@ -35,7 +35,7 @@ const Battle = () => {
                 const movieDetail = data.results
                     .sort(() => Math.random() - 0.5)
                     .slice(0, 10)
-                    .map(movie => ({
+                    .map((movie: { id: string; poster_path: string; title: string; }) => ({
                         id: movie.id,
                         image: `https://image.tmdb.org/t/p/original${movie.poster_path}`,
                         name: movie.title
