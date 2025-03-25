@@ -40,6 +40,9 @@ const Dashboard = () => {
                 <Link className="text-neutral-50" href={'/ranking'}>
                     Classements
                 </Link>
+                <Link className="text-neutral-50" href={'/custom'}>
+                    Bataille personnalisée
+                </Link>
             </div>
 
         </>

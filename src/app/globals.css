@@ -22,3 +22,7 @@ body {
 .anticon.anticon-close {
   color: var(--foreground);
 }
+
+input:active, input:focus {
+  outline: none;
+}

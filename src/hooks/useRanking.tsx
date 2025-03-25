@@ -35,7 +35,7 @@ export const useRanking = () => {
                 if (now > data.expiresAt) {
                     const newData: StoredData = {
                         token: generateToken(),
-                        expiresAt: now + 3600000, // token d'une heure
+                        expiresAt: now + 3600000,
                         sessions: []
                     };
                     localStorage.setItem('rankingHistory', JSON.stringify(newData));
