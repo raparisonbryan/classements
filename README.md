@@ -49,18 +49,18 @@ Suivez ces étapes pour installer et exécuter l'application en local :
     Cela démarrera un conteneur PostgreSQL nommé `battle-db` avec les identifiants définis dans le fichier `docker-compose.yml`.
 
 4.  **Configurer les variables d'environnement :**
-    Certaines fonctionnalités de l'application dépendent de variables d'environnement, notamment les clés d'API pour les données des chiens, chats, jeux et films. Vous devrez créer un fichier `.env.local` à la racine du projet et y définir ces variables. (je sais que transmettre les clés d'API de cette manière n'est pas idéal, mais comme on est en cours...)
+    Certaines fonctionnalités de l'application dépendent de variables d'environnement, notamment les clés d'API pour les données des chiens, chats, jeux et films. Vous devrez créer un fichier `.env.local` à la racine du projet et y définir ces variables. Contactez le propriétaire du dépôt pour obtenir les clés d'API nécessaires.
 
     ```
-    NEXT_PUBLIC_DOG_API=https://api.thedogapi.com/v1/images/search?limit=10&has_breeds=1
-    NEXT_PUBLIC_DOG_BREED_API=https://api.thedogapi.com/v1/images
-    NEXT_PUBLIC_CAT_API=https://api.thecatapi.com/v1/images/search?limit=10&has_breeds=1
-    NEXT_PUBLIC_CAT_BREED_API=https://api.thecatapi.com/v1/images
-    NEXT_PUBLIC_GAME_API=https://api.rawg.io/api/games
-    NEXT_PUBLIC_GAME_API_KEY=d9c5be4a4dd54713862d48df7337ef0f
-    NEXT_PUBLIC_MOVIE_API=https://api.themoviedb.org/3/movie/top_rated
-    NEXT_PUBLIC_MOVIE_API_KEY=eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlOGJkN2ZmMTQwNWNhZjJlYTMyN2E3NGZiYThhY2YwOCIsIm5iZiI6MTczOTI3ODc4OC41MTksInN1YiI6IjY3YWI0OWM0NWMwZTY3ZTU2YmJiMzM0NSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.xEUP17AxxEp-G_SUeQmrAJncmsPOlJNecZuSdJ3d5yo
-    DATABASE_URL="postgresql://battleuser:battlepassword@localhost:5432/battleapp?schema=public"
+    NEXT_PUBLIC_DOG_API=
+    NEXT_PUBLIC_DOG_BREED_API=
+    NEXT_PUBLIC_CAT_API=
+    NEXT_PUBLIC_CAT_BREED_API=
+    NEXT_PUBLIC_GAME_API=
+    NEXT_PUBLIC_GAME_API_KEY=
+    NEXT_PUBLIC_MOVIE_API=
+    NEXT_PUBLIC_MOVIE_API_KEY=
+    DATABASE_URL=
     ```
 
 5.  **Démarrer le serveur de développement :**
